@@ -1,0 +1,14 @@
+version: '3'
+services:
+  solr:
+    image: solr:8.2.0
+    container_name: solrd
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./data/cards:/var/solr/data/cards
+    entrypoint:
+      - bash
+      - "-c"
+      - "init-var-solr; exec solr -f"
+      # - "precreate-core cards; precreate-core catalogo; exec solr -f"
